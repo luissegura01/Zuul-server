@@ -1,0 +1,26 @@
+spring:
+   application:
+      name: zuulserver
+server:
+   port: 8111
+zuul:
+  prefix: /api
+  routes:
+     microservice1:
+        path: /teachers
+        #We can use the name of the service or the url of the service
+        #To use the name of the servive, the service must be registered with Eureka
+        service-id: MICROSERVICE1
+        #url: http://localhost:8081/
+        
+     microservice2:
+        path: /students
+        service-id: MICROSERVICE2
+        #url: http://localhost:8082/  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2 
